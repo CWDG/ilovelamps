@@ -1,9 +1,9 @@
 <h3>Best Lamps in Town!</h3>
 
 <ul>
-  <% $lamps.each_with_index do |lamp, i| %>
+  <% @lamps.each do |lamp| %>
     <li>
-      <a href="/lamps/<%= i %>">
+      <a href="/lamps/<%= lamp.id %>">
         <%= lamp.name %>
       </a>
     </li>

@@ -1,16 +1,11 @@
 require 'sinatra'
 require_relative 'lamp'
+require_relative 'database'
 
-$lamps = [
-  Lamp.new(0, :desk, 10.00),
-  Lamp.new(1, :table, 20.00),
-  Lamp.new(2, :floor, 40.00),
-  Lamp.new(3, :magic, 100.00),
-  Lamp.new(4, :mario, 35.00)
-]
 
 get '/' do
   @title = "I Love Lamps.com"
+  @lamps = database.all
   erb :index
 end
 
@@ -42,9 +37,9 @@ end
 
 def find_lamp(params)
   id = params[:id].to_i
-  if id > $lamps.size
-    404
-  else
-    $lamps[id]
-  end
+  database.find_by_id(id)
+end
+
+def database
+  $lamp_database ||= Database.new
 end

@@ -1,8 +1,5 @@
 require_relative 'lamp'
 
-class NotFoundError < RuntimeError
-end
-
 class Database
 
   def initialize
@@ -22,7 +19,7 @@ class Database
   end
 
   def find_by_id(id)
-    raise NotFoundError.new("Lamp##{id} does not exist!") if id < 0 || id >= @lamps.size
+    raise Sinatra::NotFound.new("Lamp##{id} does not exist!") if id < 0 || id >= @lamps.size
 
     @lamps[id]
   end

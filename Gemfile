@@ -1,10 +1,5 @@
 source "http://rubygems.org"
 
 gem 'sinatra'
-gem 'shotgun'
-
-group :development do
-
-end
-
-
+gem 'heroku'
+gem 'thin'

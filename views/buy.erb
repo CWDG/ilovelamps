@@ -1,0 +1,24 @@
+<h3>
+  Are you sure you wish to buy <%= @lamp.name %> Lamp for <%= @lamp.price %>?
+</h3>
+
+<% if @error %>
+  <h4 class="error">
+    <%= @error %>
+  </h4>
+<% end %>
+
+<% if @lamp.quantity > 0 %>
+
+  <form id="buy-lamp" action="/buy/<%= @lamp.id %>" method="post">
+    <label for="price"><%= @lamp.name %> Lamp:</label>
+    <input id="price" type="text" name="price" value="$<%= @lamp.price %>" readonly disabled>
+    <input type="submit" value="Buy">
+  </form>
+
+<% else %>
+  <p>Sorry, we don't have any more <%= @lamp.name %> Lamps in stock.</p>
+<% end %>
+
+
+<a href="/lamps/<%= @lamp.id %>">Back</a>

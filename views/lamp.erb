@@ -1,0 +1,12 @@
+<h3>Now viewing details for the <%= @lamp.name %> lamp.</h3>
+
+
+<% if true || @lamp.picture %>
+  <img src="<%= @lamp.picture %>" height="300px" />
+<% end %>
+
+<p>
+  <%= @lamp.name %> lamps are now $<%= @lamp.price %>. We only have <%= @lamp.color %> <%= @lamp.name %> lamps available at the moment. We have <%= @lamp.quantity %> left in stock.
+</p>
+
+<a href="/buy/<%= @lamp.id %>">Buy Now!</a>

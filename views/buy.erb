@@ -10,9 +10,18 @@
 
 <% if @lamp.quantity > 0 %>
 
+  <p>Get one quick! Only <%= @lamp.quantity %> left!</p>
+
   <form id="buy-lamp" action="/buy/<%= @lamp.id %>" method="post">
     <label for="price"><%= @lamp.name %> Lamp:</label>
     <input id="price" type="text" name="price" value="$<%= @lamp.price %>" readonly disabled>
+
+    <label for="quantity">Quantity:</label>
+    <input id="quantity" type="text" name="quantity" value="1">
+
+    <label for="total">Total</label>
+    <input id="total" type="text" name="total" value="$<%= @lamp.price %>" readonly disabled>
+
     <input type="submit" value="Buy">
   </form>
 

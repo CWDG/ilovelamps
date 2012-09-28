@@ -23,13 +23,22 @@ end
 
 post '/buy/:id' do
   @lamp = find_lamp(params)
+  quantity = params[:quantity].to_i
 
-  if @lamp.quantity > 0
-    @lamp.quantity -= 1
+  if quantity <= 0
+    @error = "We only accept orders of 1 or more lamps."
+    @title = "#{@lamp.name} Lamp - I Love Lamps.com"
+    erb :buy
+  elsif @lamp.quantity > quantity
+    @lamp.quantity -= quantity
     @title = "Thankyou from I Love Lamps.com"
     erb :thankyou
   else
-    @error = "Out of Stock"
+    if @lamp.quantity > 0
+      @error = "Not enough #{@lamp.name} Lamps left in stock. Only #{@lamp.quantity} left!"
+    else
+      @error = "Out of Stock"
+    end
     @title = "#{@lamp.name} Lamp - I Love Lamps.com"
     erb :buy
   end
